@@ -2284,6 +2284,10 @@ func f(list []int) {
   </td></tr>
   </tbody></table>
 
+Remember that, while it is a valid slice, a nil slice is not equivalent to an
+allocated slice of length 0 - one is nil and the other is not - and the two may
+be treated differently in different situations (such as serialization).
+
 ### Reduce Scope of Variables
 
 Where possible, reduce scope of variables. Do not reduce the scope if it
@@ -2395,7 +2399,7 @@ const (
 type Status int
 
 const (
-  StatusReady = iota + 1
+  StatusReady Status = iota + 1
   StatusDone
   // Maybe we will have a StatusInProgress in the future.
 )
